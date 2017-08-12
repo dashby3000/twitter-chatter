@@ -1,8 +1,6 @@
 # Twitter Chatter 
 
-This simple Node.js program for Bluemix leverages the [Twitter public REST APIs](https://dev.twitter.com/rest/public) and the 
-IBM Watson Tone Analyzer to get the current sentiment about a term or group of terms.  This is not meant to be a production
-app, but rather a quickly created starting point for using Watson and Twitter services in a Bluemix app.
+This simple Node.js program for Bluemix leverages the [Twitter public REST APIs](https://dev.twitter.com/rest/public) and the IBM Watson Tone Analyzer to get the current sentiment about a term or group of terms.  This is not meant to be a production app, but rather a quickly created starting point for using Watson and Twitter services in a Bluemix app.
 
 ## Requirements
 
@@ -12,8 +10,7 @@ you can sign up for a free developer account there, and then create your app key
 app with environment variables, set from the Bluemix user interface.
 
 This application will also create service instances for Watson Tone Analyzer and Cloudant NoSQL database, both 
-using the free Lite plan.  Because of this the app may not scale beyond on developer user.  If you want to scale to 
-production capacity you will need to use a database plan other than Lite.
+using the free Lite plan.  Because of this the app may not scale beyond on developer user.  If you want to scale to production capacity you will need to use a database plan other than Lite.
 
 
 ## Deployment Options

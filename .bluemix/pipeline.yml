@@ -2,9 +2,8 @@
 stages:
 - name: Build Stage
   inputs:
-    type: git
+  - type: git
     branch: master
-    dir_name: null
   triggers:
   - type: commit
   jobs:
@@ -33,15 +32,9 @@ stages:
   - name: Deploy
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: JimsSandbox
-      space: tmp
-      application: Twitter Chatter
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: |-
       #!/bin/bash
       cf push "${CF_APP}"
-hooks:
-- enabled: true
-  label: null
-  ssl_enabled: false
-  url: https://devops-api.ng.bluemix.net/v1/messaging/webhook/publish
