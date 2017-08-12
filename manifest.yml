@@ -1,0 +1,11 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: Twitter Chatter
+  host: Twitter-Chatter
+  disk_quota: 1024M
+  services:
+    - Twitter-Chatter-db
+    - Twitter-Chatter-ta

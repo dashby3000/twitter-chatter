@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Twitter Summaries</title>
+   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ 	
+ 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js"></script>
+
+   	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+
+      function drawChart(anger, disgust, fear, sadness) {
+    	  
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Anger', anger],
+          ['Disgust', disgust],
+          ['Fear', fear],
+          ['Sadness', sadness]
+        ]);
+
+        var options = {
+          width: 600, height: 120,
+          redFrom: 75, redTo: 100,
+          yellowFrom:50, yellowTo: 75,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+    
+      }
+    </script>
+    
+    <style type="text/css">
+    .loader {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    </style>
+
+
+ </head>
+
+  <body>
+  
+<body>
+<div class="container">
+
+ 	<div class="jumbotron">
+        <h1>Twitter Tones</h1>
+        <p>A simple node.js app that queries Twitter for current tweets and displays the average of
+        tones as processed by Watson Tone Analysis.  Each time you process a different term, the results
+        are added to the database and the sum total are processed.  You can reset the database to clear 
+        it up for a different set of processing.</p>
+	</div>
+
+	<div class="container">
+	  <div class="form-group">
+	    <label for="term">Twitter Search Term</label>
+	    <input style="width:300px;" type="text" class="form-control" id="term" name="term" placeholder="i.e. @IBMBluemix">
+	  	<button class="btn btn-primary" onclick="process()">Process Tweets</button>
+	  	<button class="btn btn-primary" onclick="resetDB()">Rest Database</button>
+	  </div>
+	  <div class="loader hidden" id="loader"></div>
+	  
+	</div>
+	
+	
+	<div class="container">
+		<H1>Tweet Count: <span id="tweetCount"></span></h1>
+	</div>
+	
+	<div class="container">
+	
+		<div id="chart_div" style="width: 400px; height: 120px;"></div>
+	
+	</div>
+	
+	<script type="text/javascript">	
+	
+	function resetDB(){
+		$.ajax({
+			type: 'DELETE',
+			url: "/db"
+		});
+		drawChart( 0, 0, 0, 0 );
+    	$('#tweetCount').text(0);
+		
+	}
+	
+	function process(){
+		$('#loader').removeClass('hidden');
+		$.ajax({
+				type: "POST",
+				url: "/process",
+				dataType: 'json',
+				data: 	{
+			        		term: $('#term').val()
+			    		},
+			    success: function(data, status){
+			    			if( status == 'success') {
+			    				drawChart( data.stats.anger, data.stats.disgust, data.stats.fear, data.stats.sadness );
+			 		    	   $('#tweetCount').text(data.tweet_count);
+			 		    	  $('#loader').addClass('hidden');
+			 		  		
+			    			} else {
+			    				alert('There was a problem with the processing: ' + status);
+			    			}
+			    		}
+		});
+	}
+
+	$( document ).ready(function() {
+		$('#loader').removeClass('hidden');
+		$.ajax({
+		       url: '/stats',
+		       dataType: 'json',
+		       success: function(data) {
+		    	   drawChart( data.stats.anger, data.stats.disgust, data.stats.fear, data.stats.sadness );
+		    	   $('#tweetCount').text(data.tweet_count);
+		    	   $('#loader').addClass('hidden');
+		       }
+		    });
+	});
+	
+	</script>
+
+</div>
+</body>
+</html>

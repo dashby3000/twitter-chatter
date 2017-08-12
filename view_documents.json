@@ -1,0 +1,25 @@
+{
+  "views": {
+    "anger": {
+      "map": "function (doc) {\n   if (doc.tone) {\n   \t\t// this doc has been processed\n   \t\tvar tone_id = \"anger\";\n   \t\tvar category_id = \"emotion_tone\";\n   \t\tvar categories = doc.tone[\"document_tone\"][\"tone_categories\"];\n   \t\tfor(var i=0;i<categories.length;i++){\n   \t\t\tvar category = categories[i];\n   \t\t\tif( category.category_id == category_id) {\n   \t\t\t\tvar tones = category.tones;\n   \t\t\t\tfor(var t=0;t<tones.length;t++){\n   \t\t\t\t\tvar tone = tones[t];\n   \t\t\t\t\tif( tone.tone_id == tone_id){\n   \t\t\t\t\t\temit(tone_id, tone.score);\n   \t\t\t\t\t}\n   \t\t\t\t}\n   \t\t\t}\n   \t\t}\n    }\n}",
+      "reduce": "_stats"
+    },
+    "disgust": {
+      "map": "function (doc) {\n   if (doc.tone) {\n   \t\t// this doc has been processed\n   \t\tvar tone_id = \"disgust\";\n   \t\tvar category_id = \"emotion_tone\";\n   \t\tvar categories = doc.tone[\"document_tone\"][\"tone_categories\"];\n   \t\tfor(var i=0;i<categories.length;i++){\n   \t\t\tvar category = categories[i];\n   \t\t\tif( category.category_id == category_id) {\n   \t\t\t\tvar tones = category.tones;\n   \t\t\t\tfor(var t=0;t<tones.length;t++){\n   \t\t\t\t\tvar tone = tones[t];\n   \t\t\t\t\tif( tone.tone_id == tone_id){\n   \t\t\t\t\t\temit(tone_id, tone.score);\n   \t\t\t\t\t}\n   \t\t\t\t}\n\n   \t\t\t}\n   \t\t}\n\n    }\n}",
+      "reduce": "_stats"
+    },
+    "fear": {
+      "map": "function (doc) {\n   if (doc.tone) {\n   \t\t// this doc has been processed\n   \t\tvar tone_id = \"fear\";\n   \t\tvar category_id = \"emotion_tone\";\n   \t\tvar categories = doc.tone[\"document_tone\"][\"tone_categories\"];\n   \t\tfor(var i=0;i<categories.length;i++){\n   \t\t\tvar category = categories[i];\n   \t\t\tif( category.category_id == category_id) {\n   \t\t\t\tvar tones = category.tones;\n   \t\t\t\tfor(var t=0;t<tones.length;t++){\n   \t\t\t\t\tvar tone = tones[t];\n   \t\t\t\t\tif( tone.tone_id == tone_id){\n   \t\t\t\t\t\temit(tone_id, tone.score);\n   \t\t\t\t\t}\n   \t\t\t\t}\n\n   \t\t\t}\n   \t\t}\n\n    }\n}",
+      "reduce": "_stats"
+    },
+    "joy": {
+      "map": "function (doc) {\n   if (doc.tone) {\n   \t\t// this doc has been processed\n   \t\tvar tone_id = \"joy\";\n   \t\tvar category_id = \"emotion_tone\";\n   \t\tvar categories = doc.tone[\"document_tone\"][\"tone_categories\"];\n   \t\tfor(var i=0;i<categories.length;i++){\n   \t\t\tvar category = categories[i];\n   \t\t\tif( category.category_id == category_id) {\n   \t\t\t\tvar tones = category.tones;\n   \t\t\t\tfor(var t=0;t<tones.length;t++){\n   \t\t\t\t\tvar tone = tones[t];\n   \t\t\t\t\tif( tone.tone_id == tone_id){\n   \t\t\t\t\t\temit(tone_id, tone.score);\n   \t\t\t\t\t}\n   \t\t\t\t}\n\n   \t\t\t}\n   \t\t}\n\n    }\n}",
+      "reduce": "_stats"
+    },
+    "sadness": {
+      "map": "function (doc) {\n   if (doc.tone) {\n   \t\t// this doc has been processed\n   \t\tvar tone_id = \"sadness\";\n   \t\tvar category_id = \"emotion_tone\";\n   \t\tvar categories = doc.tone[\"document_tone\"][\"tone_categories\"];\n   \t\tfor(var i=0;i<categories.length;i++){\n   \t\t\tvar category = categories[i];\n   \t\t\tif( category.category_id == category_id) {\n   \t\t\t\tvar tones = category.tones;\n   \t\t\t\tfor(var t=0;t<tones.length;t++){\n   \t\t\t\t\tvar tone = tones[t];\n   \t\t\t\t\tif( tone.tone_id == tone_id){\n   \t\t\t\t\t\temit(tone_id, tone.score);\n   \t\t\t\t\t}\n   \t\t\t\t}\n\n   \t\t\t}\n   \t\t}\n\n    }\n}",
+      "reduce": "_stats"
+    }
+  },
+  "language": "javascript"
+}

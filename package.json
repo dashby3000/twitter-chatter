@@ -1,0 +1,22 @@
+{
+	"name": "Twitter-Chatter",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "4.15.x",
+		"body-parser": "*",
+    	"ejs": "^2.3.x",
+    	"cloudant": "^1.0.x",
+    	"dateformat": "^1.0.12",
+    	"watson-developer-cloud": "^2.37.*",
+    	"twitter": "^1.7.*",
+    	"async": "^2.5.*"
+	},
+	"repository": {},
+	"engines": {
+		"node": "6.x"
+	} 
+}

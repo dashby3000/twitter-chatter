@@ -1,0 +1,47 @@
+---
+stages:
+- name: Build Stage
+  inputs:
+    type: git
+    branch: master
+    dir_name: null
+  triggers:
+  - type: commit
+  jobs:
+  - name: Build
+    type: builder
+- name: Deploy Stage
+  inputs:
+  - type: job
+    stage: Build Stage
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  jobs:
+  - name: Create Services
+    type: deployer
+    target:
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
+    script: |-
+      #!/bin/bash
+      #cf create-service cloudantNoSQLDB lite Twitter-Chatter-db
+      #cf create-service tone_analyzer lite Twitter-Chatter-ta
+  - name: Deploy
+    type: deployer
+    target:
+      region_id: ibm:yp:us-south
+      organization: JimsSandbox
+      space: tmp
+      application: Twitter Chatter
+    script: |-
+      #!/bin/bash
+      cf push "${CF_APP}"
+hooks:
+- enabled: true
+  label: null
+  ssl_enabled: false
+  url: https://devops-api.ng.bluemix.net/v1/messaging/webhook/publish
