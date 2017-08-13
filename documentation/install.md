@@ -24,4 +24,4 @@ so you should convert them into a JSON string like the following;
 2. This will navigate you to Bluemix.  If you haven't logged in yet, log into Bluemix with your
 Bluemix ID. 
 
-![](images/DcreenShot1.png)
+![](./images/DcreenShot1.png)
