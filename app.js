@@ -147,7 +147,7 @@ app.post('/process',
 	
 			console.log('fetching the latest tweets and loading them in the database...');
 			
-			client.get('search/tweets', {q: term, count: 100}, function(error, statuses, response) {
+			client.get('search/tweets', {q: term, count: 20}, function(error, statuses, response) {
 				var tweets = statuses.statuses;
 				var timeout = 0;
 				
