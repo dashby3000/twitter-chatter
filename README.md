@@ -19,7 +19,7 @@ using the free Lite plan.  Because of this the app may not scale beyond on devel
 This application leverages the Twitter public API, Watson Tone Analyzer to analyze the tweets and a cloudant database to store 
 the tweets and analysis. A single page web app id presented to the user.
 
-[Architecture Overview](documentation/images/ArchDgm.png)
+[Architecture Overview](./documentation/images/ArchDgm.png)
 
 > Note: This app uses the Cloudant Database `Lite` plan.  This plan restricts the number of calls per second to 
 > the database.  As a result, this application has a lot of code that serializes and delays database calls
