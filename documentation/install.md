@@ -24,4 +24,4 @@ so you should convert them into a JSON string like the following;
 2. This will navigate you to Bluemix.  If you haven't logged in yet, log into Bluemix with your
 Bluemix ID. 
 
-<img src="images/ScreenShot1.png" alt="Drawing" style="height: 100px;"/>
+<img src="images/ScreenShot1.png" alt="Drawing" height="200" />
