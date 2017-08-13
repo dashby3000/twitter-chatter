@@ -36,4 +36,7 @@ stages:
       application: ${CF_APP}
     script: |-
       #!/bin/bash
-      cf push "${CF_APP}"
+      # generate a random 4 digit number to append to app name to use as the 
+      # host name.  This will be more likely to be unique in the mybluemix.net
+      # space
+      cf push "${CF_APP}" -n "${CF_APP}-$(( ( RANDOM % 9999 ) + 1000 ))"
