@@ -153,7 +153,7 @@ app.post('/process',
 				
 				async.eachSeries(tweets, function(tweet, callback) {
 					timeout += 500;
-					setTimeout( processTweet(tweet, function(err,result){ callback(); }), timeout );
+					setTimeout( function(){processTweet(tweet, function(err,result){ callback(); })}, timeout );
 				}, function done(){
 					getStats( function(args){
 						res.json(args);
