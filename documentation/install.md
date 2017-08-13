@@ -65,7 +65,7 @@ variables tab in the middle of the page.
 environment variable is `twitter_api` and the value is the JSON object you prepared earlier as a single line (remove 
 all line breaks).  Press Save.
 
-<img src="images/ScreenShot8.png" alt="Drawing" height="300" />
+<img src="images/ScreenShot8.png" alt="Drawing" height="200" />
 
 10. Changing the environment variables forces a restart of the application.  
 
@@ -82,10 +82,17 @@ all line breaks).  Press Save.
 > so as to not exceed these limits.  The resulting user experience is a very slow application.  If you 
 > use a plan other than Lite, performance should be normal (very fast).
 
-13. asd
+13. When the app has initialized the display will include four [guages from Google](https://developers.google.com/chart/interactive/docs/gallery/gauge)
+all initialized to zero with the number of tweets set to zero. To process some tweets enter in a search term
+and press the Process Tweets button.
 
 <img src="images/ScreenShot11.png" alt="Drawing" height="300" />
 
-3. asd
+14. Remember this version of the app is serializing and delaying all database calls to prevent exceeding the Cloudant Lite plan
+limits, so it will take a minute or so for the page to respond.  When it does the guages and number of tweets 
+will be updated.  
 
 <img src="images/ScreenShot12.png" alt="Drawing" height="300" />
+
+15. If you are interested in the details (and additional Watson analysis) all the data is stored in the Cloudant database.
+Use the Bluemix UI to launch the Cloudant console and examine the data.
