@@ -27,7 +27,7 @@ stages:
       application: ${CF_APP}
     script: |-
       #!/bin/bash
-      cf create-service cloudantNoSQLDB lite Twitter-Chatter-db
+      cf create-service cloudantNoSQLDB Lite Twitter-Chatter-db
       cf create-service tone_analyzer lite Twitter-Chatter-ta
   - name: Deploy
     type: deployer
