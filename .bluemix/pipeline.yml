@@ -21,7 +21,6 @@ stages:
   - name: Create Services
     type: deployer
     target:
-      url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
       application: ${CF_APP}
